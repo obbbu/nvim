@@ -109,10 +109,16 @@ return {
             handlers = {
                 -- this first function is the "default handler"
                 -- it applies to every language server without a custom handler
+                intelephense = function()
+                    require('lspconfig').intelephense.setup({
+                        init_options = {
+                            globalStoragePath = os.homedir() .. '/.local/share/intelephense'
+                        }
+                    })
+                end,
                 function(server_name)
                     require('lspconfig')[server_name].setup({})
                 end,
-
                 -- this is the "custom handler" for `lua_ls`
                 lua_ls = function()
                     require('lspconfig').lua_ls.setup({
