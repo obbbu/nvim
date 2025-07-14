@@ -102,20 +102,13 @@ return {
         require('mason-lspconfig').setup({
             ensure_installed = {
                 "lua_ls",
-                "intelephense",
+                "phpactor",
                 "cssls",
                 "biome",
             },
             handlers = {
                 -- this first function is the "default handler"
                 -- it applies to every language server without a custom handler
-                intelephense = function()
-                    require('lspconfig').intelephense.setup({
-                        init_options = {
-                            globalStoragePath = os.homedir() .. '/.local/share/intelephense'
-                        }
-                    })
-                end,
                 function(server_name)
                     require('lspconfig')[server_name].setup({})
                 end,
